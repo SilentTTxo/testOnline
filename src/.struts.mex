@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="exam.action" location="568,197" size="170,70">
+    <action name="loginAction" location="-6,20" size="150,40" />
+  </package>
+  <webResource name="Login.jsp" path="/Login.jsp" location="323,154" size="150,55" />
+  <webResource name="Error.jsp" path="/Error.jsp" location="324,241" size="150,55" />
+  <webResource name="index.jsp" path="/index.jsp" location="323,328" size="150,55" />
+</Struts2Diagram>
+
