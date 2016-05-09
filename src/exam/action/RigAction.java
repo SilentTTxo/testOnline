@@ -1,7 +1,7 @@
 package exam.action;
 
-import exam.user.User;
-import exam.user.UserDAO;
+import exam.ex.User;
+import exam.ex.UserDAO;
 
 public class RigAction {
 	private User user;

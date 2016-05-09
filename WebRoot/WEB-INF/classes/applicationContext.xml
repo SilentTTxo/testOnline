@@ -26,7 +26,13 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>exam/user/User.hbm.xml</value></list>
+				<value>exam/ex/Allexam.hbm.xml</value>
+				<value>exam/ex/Exam.hbm.xml</value>
+				<value>exam/ex/Nowexam.hbm.xml</value>
+				<value>exam/ex/Score.hbm.xml</value>
+				<value>exam/ex/Exque.hbm.xml</value>
+				<value>exam/ex/Question.hbm.xml</value>
+				<value>exam/ex/User.hbm.xml</value></list>
 		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -43,10 +49,39 @@
 			<ref bean="UserDAO" />
 		</property>
 	</bean>
+	<bean id="ExamAction" class="exam.action.ExamAction"  scope="prototype">
+		<property name="nowexamDAO">
+			<ref bean="NowexamDAO" />
+		</property>
+	</bean>
 	<bean
-		id="UserDAO" class="exam.user.UserDAO">
+		id="UserDAO" class="exam.ex.UserDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-</beans>
+	<bean id="AllexamDAO" class="exam.ex.AllexamDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExamDAO" class="exam.ex.ExamDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="NowexamDAO" class="exam.ex.NowexamDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExqueDAO" class="exam.ex.ExqueDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="QuestionDAO" class="exam.ex.QuestionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

@@ -7,10 +7,14 @@
 			<result>/Login.jsp</result>
 		</action>
 		<action name="Login" class="LoginAction">
-			<result name="SUCCESS">/index.jsp</result>
+			<result name="SUCCESS" type="chain">Exam</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="Rig" class="RigAction">
+			<result name="SUCCESS">/login.html</result>
+			<result name="ERROR">/Error.jsp</result>
+		</action>
+		<action name="Exam" class="ExamAction">
 			<result name="SUCCESS">/index.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>

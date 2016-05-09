@@ -1,11 +1,14 @@
 package exam.action;
 
-import exam.user.UserDAO;
-import exam.user.User;
+import exam.ex.UserDAO;
+import exam.ex.User;
 
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
@@ -57,6 +60,9 @@ public class LoginAction {
 		List<User> userList = userDAO.findAll();
 		for(User temp:userList){
 			if(temp.getUsername().equals(username)&&temp.getPassword().equals(password)){
+				HttpSession session = ServletActionContext.getRequest().getSession();
+				session.setAttribute("username", username);
+				session.setAttribute("power", temp.getPower());
 				return "SUCCESS";
 			}
 		}
