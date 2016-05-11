@@ -18,10 +18,24 @@ public class LoginAction {
 	private String username;
 	private String password;
 	private UserDAO userDAO;
+	private String url;
 	private String message;
+	private int isUnLogin ;
 	
 	public String getMessage() {
 		return message;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getIsUnLogin() {
+		return isUnLogin;
+	}
+	public void setIsUnLogin(int isUnLogin) {
+		this.isUnLogin = isUnLogin;
 	}
 	public void setMessage(String message) {
 		this.message = message;
@@ -47,25 +61,25 @@ public class LoginAction {
 	public LoginAction(){	
 	}
 	public String execute() throws Exception {
-		/*if(getUsername().length() == 0){
+		if(isUnLogin==1){
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.invalidate();
+			setMessage("退出成功！");
 			return "ERROR";
 		}
-		else {
-			return "SUCCESS";
-		}*/
-		/*ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
-		UserDAO xxx =  (UserDAO)ac.getBean("UserDAO");
-		System.out.println(" dao --> "+ xxx);
-		userDAO = xxx;*/
 		List<User> userList = userDAO.findAll();
 		for(User temp:userList){
 			if(temp.getUsername().equals(username)&&temp.getPassword().equals(password)){
 				HttpSession session = ServletActionContext.getRequest().getSession();
 				session.setAttribute("username", username);
 				session.setAttribute("power", temp.getPower());
+				session.setAttribute("userid", temp.getId());
+				session.setAttribute("user", temp);
+				if(temp.getPower()==2) return "ADMIN";
 				return "SUCCESS";
 			}
 		}
+		url = "EXAM";
 		setMessage("账号密码错误");
 		return "ERROR";
 	}

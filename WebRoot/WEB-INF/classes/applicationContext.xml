@@ -8,7 +8,7 @@
 
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url" value="jdbc:mysql://ecs.SilentTT.top:3306/exam"> </property>
+		<property name="url" value="jdbc:mysql://ecs.SilentTT.top:3306/exam?useUnicode=true&amp;characterEncoding=utf-8"> </property>
 		<property name="username" value="root"></property>
 		<property name="password" value="a132132"></property>
 	</bean>
@@ -32,7 +32,8 @@
 				<value>exam/ex/Score.hbm.xml</value>
 				<value>exam/ex/Exque.hbm.xml</value>
 				<value>exam/ex/Question.hbm.xml</value>
-				<value>exam/ex/User.hbm.xml</value></list>
+				<value>exam/ex/User.hbm.xml</value>
+				<value>exam/ex/Seuview.hbm.xml</value></list>
 		</property></bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -52,6 +53,46 @@
 	<bean id="ExamAction" class="exam.action.ExamAction"  scope="prototype">
 		<property name="nowexamDAO">
 			<ref bean="NowexamDAO" />
+		</property>
+		<property name="scoreDAO">
+			<ref bean="ScoreDAO" />
+		</property>
+		<property name="userDAO">
+			<ref bean="UserDAO" />
+		</property>
+	</bean>
+	<bean id="testAction" class="exam.action.testAction"  scope="prototype">
+		<property name="allexamDAO">
+			<ref bean="AllexamDAO" />
+		</property>
+		<property name="nowexamDAO">
+			<ref bean="NowexamDAO" />
+		</property>
+	</bean>
+	<bean id="JudgeAction" class="exam.action.JudgeAction"  scope="prototype">
+		<property name="questionDAO">
+			<ref bean="QuestionDAO" />
+		</property>
+		<property name="scoreDAO">
+			<ref bean="ScoreDAO" />
+		</property>
+		<property name="examDAO">
+			<ref bean="ExamDAO" />
+		</property>
+	</bean>
+	<bean id="ScoreAction" class="exam.action.ScoreAction"  scope="prototype">
+		<property name="seuviewDAO">
+			<ref bean="SeuviewDAO" />
+		</property>
+	</bean>
+	<bean id="UserInfoAction" class="exam.action.UserInfoAction"  scope="prototype">
+		<property name="userDAO">
+			<ref bean="UserDAO" />
+		</property>
+	</bean>
+	<bean id="QuestionAction" class="exam.action.QuestionAction"  scope="prototype">
+		<property name="questionDAO">
+			<ref bean="QuestionDAO" />
 		</property>
 	</bean>
 	<bean
@@ -81,6 +122,16 @@
 		</property>
 	</bean>
 	<bean id="QuestionDAO" class="exam.ex.QuestionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ScoreDAO" class="exam.ex.ScoreDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SeuviewDAO" class="exam.ex.SeuviewDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

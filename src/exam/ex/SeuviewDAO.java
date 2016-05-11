@@ -1,7 +1,6 @@
 package exam.ex;
 
 import java.util.List;
-import java.util.Set;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,28 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Question entities. Transaction control of the save(), update() and delete()
+ * Seuview entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see exam.ex.Question
+ * @see exam.ex.Seuview
  * @author MyEclipse Persistence Tools
  */
 @Transactional
-public class QuestionDAO {
-	private static final Logger log = LoggerFactory
-			.getLogger(QuestionDAO.class);
+public class SeuviewDAO {
+	private static final Logger log = LoggerFactory.getLogger(SeuviewDAO.class);
 	// property constants
-	public static final String DIS = "dis";
-	public static final String ANSNUM = "ansnum";
-	public static final String ANSA = "ansa";
-	public static final String ANSB = "ansb";
-	public static final String ANSC = "ansc";
-	public static final String ANSD = "ansd";
-	public static final String ANSE = "anse";
-	public static final String ANS = "ans";
 
 	private SessionFactory sessionFactory;
 
@@ -51,8 +41,8 @@ public class QuestionDAO {
 		// do nothing
 	}
 
-	public void save(Question transientInstance) {
-		log.debug("saving Question instance");
+	public void save(Seuview transientInstance) {
+		log.debug("saving Seuview instance");
 		try {
 			getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -62,8 +52,8 @@ public class QuestionDAO {
 		}
 	}
 
-	public void delete(Question persistentInstance) {
-		log.debug("deleting Question instance");
+	public void delete(Seuview persistentInstance) {
+		log.debug("deleting Seuview instance");
 		try {
 			getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -73,11 +63,11 @@ public class QuestionDAO {
 		}
 	}
 
-	public Question findById(java.lang.Integer id) {
-		log.debug("getting Question instance with id: " + id);
+	public Seuview findById(exam.ex.SeuviewId id) {
+		log.debug("getting Seuview instance with id: " + id);
 		try {
-			Question instance = (Question) getCurrentSession().get(
-					"exam.ex.Question", id);
+			Seuview instance = (Seuview) getCurrentSession().get(
+					"exam.ex.Seuview", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -85,11 +75,11 @@ public class QuestionDAO {
 		}
 	}
 
-	public List findByExample(Question instance) {
-		log.debug("finding Question instance by example");
+	public List findByExample(Seuview instance) {
+		log.debug("finding Seuview instance by example");
 		try {
 			List results = getCurrentSession()
-					.createCriteria("exam.ex.Question")
+					.createCriteria("exam.ex.Seuview")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -101,10 +91,10 @@ public class QuestionDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Question instance with property: " + propertyName
+		log.debug("finding Seuview instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Question as model where model."
+			String queryString = "from Seuview as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -115,42 +105,10 @@ public class QuestionDAO {
 		}
 	}
 
-	public List findByDis(Object dis) {
-		return findByProperty(DIS, dis);
-	}
-
-	public List findByAnsnum(Object ansnum) {
-		return findByProperty(ANSNUM, ansnum);
-	}
-
-	public List findByAnsa(Object ansa) {
-		return findByProperty(ANSA, ansa);
-	}
-
-	public List findByAnsb(Object ansb) {
-		return findByProperty(ANSB, ansb);
-	}
-
-	public List findByAnsc(Object ansc) {
-		return findByProperty(ANSC, ansc);
-	}
-
-	public List findByAnsd(Object ansd) {
-		return findByProperty(ANSD, ansd);
-	}
-
-	public List findByAnse(Object anse) {
-		return findByProperty(ANSE, anse);
-	}
-
-	public List findByAns(Object ans) {
-		return findByProperty(ANS, ans);
-	}
-
 	public List findAll() {
-		log.debug("finding all Question instances");
+		log.debug("finding all Seuview instances");
 		try {
-			String queryString = "from Question";
+			String queryString = "from Seuview";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -159,10 +117,10 @@ public class QuestionDAO {
 		}
 	}
 
-	public Question merge(Question detachedInstance) {
-		log.debug("merging Question instance");
+	public Seuview merge(Seuview detachedInstance) {
+		log.debug("merging Seuview instance");
 		try {
-			Question result = (Question) getCurrentSession().merge(
+			Seuview result = (Seuview) getCurrentSession().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -172,8 +130,8 @@ public class QuestionDAO {
 		}
 	}
 
-	public void attachDirty(Question instance) {
-		log.debug("attaching dirty Question instance");
+	public void attachDirty(Seuview instance) {
+		log.debug("attaching dirty Seuview instance");
 		try {
 			getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -183,8 +141,8 @@ public class QuestionDAO {
 		}
 	}
 
-	public void attachClean(Question instance) {
-		log.debug("attaching clean Question instance");
+	public void attachClean(Seuview instance) {
+		log.debug("attaching clean Seuview instance");
 		try {
 			getCurrentSession().buildLockRequest(LockOptions.NONE).lock(
 					instance);
@@ -195,7 +153,7 @@ public class QuestionDAO {
 		}
 	}
 
-	public static QuestionDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (QuestionDAO) ctx.getBean("QuestionDAO");
+	public static SeuviewDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (SeuviewDAO) ctx.getBean("SeuviewDAO");
 	}
 }

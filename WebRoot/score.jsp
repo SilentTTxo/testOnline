@@ -77,10 +77,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="Exam"><i class="fa fa-fw fa-edit"></i> 在线考试</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="Score"><i class="fa fa-fw fa-bar-chart-o"></i> 历史成绩</a>
                     </li>
                 </ul>
@@ -96,23 +96,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            考试 <small>列表</small>
+                            成绩 <small>yooooo</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-edit"></i> 在线考试
+                                <i class="fa fa-edit"></i> 历史成绩
                             </li>
                         </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  请注意考试开始时间
-                        </div>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -124,21 +114,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <thead>
                                     <tr>
                                         <th>考试名</th>
-                                        <th>开始时间</th>
-                                        <th>结束时间</th>
-                                        <th>开始考试！</th>
+                                        <th>考试时间</th>
+                                        <th>成绩</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <s:set name="nowTime" value="new java.util.Date()"></s:set>
-                                    <s:iterator value="examidList" id="list">
-                                    <s:set name="lessTime" value="emddate"></s:set>
-                                    <s:set name="startTime" value="startdate"></s:set>
+                                    <s:iterator value="score" id="list">
                                     	<tr>
-                                    		<td><s:property value="name"/></td>
-                                    		<td><s:date name="startdate" format="yyyy-MM-dd HH:mm:ss"/></td>
-                                    		<td><s:date name="emddate" format="yyyy-MM-dd HH:mm:ss" /></td>
-                                    		<td><a class="btn col-lg-4 col-lg-offset-4 <s:if test='#nowTime.getTime() < #startTime.getTime()'>btn-danger disabled</s:if><s:else>btn-primary</s:else>" href="test?examId=<s:property value='id'/>" role="button">考试</a></td>
+                                    		<td><s:property value="exname"/></td>
+                                    		<td><s:date name="emddate" format="yyyy-MM-dd HH:mm:ss"/></td>
+                                            <td><s:property value="sco"/></td>
                                     	</tr>
                                     </s:iterator>
                                 </tbody>

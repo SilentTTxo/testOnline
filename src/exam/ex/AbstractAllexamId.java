@@ -17,8 +17,8 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 	private String ansc;
 	private String ansd;
 	private String anse;
-	private Integer queid;
 	private Integer exid;
+	private Integer queid;
 
 	// Constructors
 
@@ -34,7 +34,7 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 	/** full constructor */
 	public AbstractAllexamId(Integer id, String dis, Integer ansnum,
 			String ansa, String ansb, String ansc, String ansd, String anse,
-			Integer queid, Integer exid) {
+			Integer exid, Integer queid) {
 		this.id = id;
 		this.dis = dis;
 		this.ansnum = ansnum;
@@ -43,8 +43,8 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 		this.ansc = ansc;
 		this.ansd = ansd;
 		this.anse = anse;
-		this.queid = queid;
 		this.exid = exid;
+		this.queid = queid;
 	}
 
 	// Property accessors
@@ -113,20 +113,20 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 		this.anse = anse;
 	}
 
-	public Integer getQueid() {
-		return this.queid;
-	}
-
-	public void setQueid(Integer queid) {
-		this.queid = queid;
-	}
-
 	public Integer getExid() {
 		return this.exid;
 	}
 
 	public void setExid(Integer exid) {
 		this.exid = exid;
+	}
+
+	public Integer getQueid() {
+		return this.queid;
+	}
+
+	public void setQueid(Integer queid) {
+		this.queid = queid;
 	}
 
 	public boolean equals(Object other) {
@@ -162,12 +162,12 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 				&& ((this.getAnse() == castOther.getAnse()) || (this.getAnse() != null
 						&& castOther.getAnse() != null && this.getAnse()
 						.equals(castOther.getAnse())))
-				&& ((this.getQueid() == castOther.getQueid()) || (this
-						.getQueid() != null && castOther.getQueid() != null && this
-						.getQueid().equals(castOther.getQueid())))
 				&& ((this.getExid() == castOther.getExid()) || (this.getExid() != null
 						&& castOther.getExid() != null && this.getExid()
-						.equals(castOther.getExid())));
+						.equals(castOther.getExid())))
+				&& ((this.getQueid() == castOther.getQueid()) || (this
+						.getQueid() != null && castOther.getQueid() != null && this
+						.getQueid().equals(castOther.getQueid())));
 	}
 
 	public int hashCode() {
@@ -189,9 +189,9 @@ public abstract class AbstractAllexamId implements java.io.Serializable {
 		result = 37 * result
 				+ (getAnse() == null ? 0 : this.getAnse().hashCode());
 		result = 37 * result
-				+ (getQueid() == null ? 0 : this.getQueid().hashCode());
-		result = 37 * result
 				+ (getExid() == null ? 0 : this.getExid().hashCode());
+		result = 37 * result
+				+ (getQueid() == null ? 0 : this.getQueid().hashCode());
 		return result;
 	}
 

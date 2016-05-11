@@ -31,11 +31,11 @@
             <key-property name="anse" type="java.lang.String">
                 <column name="ANSE" length="65535" />
             </key-property>
-            <key-property name="queid" type="java.lang.Integer">
-                <column name="QUEID" />
-            </key-property>
             <key-property name="exid" type="java.lang.Integer">
                 <column name="EXID" />
+            </key-property>
+            <key-property name="queid" type="java.lang.Integer">
+                <column name="QUEID" />
             </key-property>
         </composite-id>
     </class>

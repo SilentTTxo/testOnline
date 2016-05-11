@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Error.jsp' starting page</title>
+    <title>ERROR</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,9 +21,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
+	<script type="text/javascript">     
+function countDown(secs,surl){     
+ var jumpTo = document.getElementById('jumpTo');
+ jumpTo.innerHTML=secs;  
+ if(--secs>0){     
+     setTimeout("countDown("+secs+",'"+surl+"')",1000);     
+     }     
+ else{       
+     location.href=surl;     
+     }     
+ }     
+</script> 
   </head>
   
   <body>
-    	<s:property value="message" />
+    	<s:property value="message" />,<span id="jumpTo">3</span>秒后自动跳转
+<script type="text/javascript">countDown(3,'<s:property value="url"/>');</script> 
   </body>
 </html>

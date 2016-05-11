@@ -13,10 +13,15 @@ public class Question extends AbstractQuestion implements java.io.Serializable {
 	public Question() {
 	}
 
+	/** minimal constructor */
+	public Question(Integer ans) {
+		super(ans);
+	}
+
 	/** full constructor */
 	public Question(String dis, Integer ansnum, String ansa, String ansb,
-			String ansc, String ansd, String anse, Set exques) {
-		super(dis, ansnum, ansa, ansb, ansc, ansd, anse, exques);
+			String ansc, String ansd, String anse, Integer ans, Set exques) {
+		super(dis, ansnum, ansa, ansb, ansc, ansd, anse, ans, exques);
 	}
 
 }

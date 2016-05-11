@@ -20,6 +20,7 @@ public abstract class AbstractQuestion implements java.io.Serializable {
 	private String ansc;
 	private String ansd;
 	private String anse;
+	private Integer ans;
 	private Set exques = new HashSet(0);
 
 	// Constructors
@@ -28,9 +29,15 @@ public abstract class AbstractQuestion implements java.io.Serializable {
 	public AbstractQuestion() {
 	}
 
+	/** minimal constructor */
+	public AbstractQuestion(Integer ans) {
+		this.ans = ans;
+	}
+
 	/** full constructor */
 	public AbstractQuestion(String dis, Integer ansnum, String ansa,
-			String ansb, String ansc, String ansd, String anse, Set exques) {
+			String ansb, String ansc, String ansd, String anse, Integer ans,
+			Set exques) {
 		this.dis = dis;
 		this.ansnum = ansnum;
 		this.ansa = ansa;
@@ -38,6 +45,7 @@ public abstract class AbstractQuestion implements java.io.Serializable {
 		this.ansc = ansc;
 		this.ansd = ansd;
 		this.anse = anse;
+		this.ans = ans;
 		this.exques = exques;
 	}
 
@@ -105,6 +113,14 @@ public abstract class AbstractQuestion implements java.io.Serializable {
 
 	public void setAnse(String anse) {
 		this.anse = anse;
+	}
+
+	public Integer getAns() {
+		return this.ans;
+	}
+
+	public void setAns(Integer ans) {
+		this.ans = ans;
 	}
 
 	public Set getExques() {

@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Exam">在线考试系统</a>
+                <a class="navbar-brand" href="index.html">在线考试系统</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            考试 <small>列表</small>
+                            <s:property value="exam.name"/>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -109,40 +109,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  请注意考试开始时间
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>考试名</th>
-                                        <th>开始时间</th>
-                                        <th>结束时间</th>
-                                        <th>开始考试！</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <s:set name="nowTime" value="new java.util.Date()"></s:set>
-                                    <s:iterator value="examidList" id="list">
-                                    <s:set name="lessTime" value="emddate"></s:set>
-                                    <s:set name="startTime" value="startdate"></s:set>
-                                    	<tr>
-                                    		<td><s:property value="name"/></td>
-                                    		<td><s:date name="startdate" format="yyyy-MM-dd HH:mm:ss"/></td>
-                                    		<td><s:date name="emddate" format="yyyy-MM-dd HH:mm:ss" /></td>
-                                    		<td><a class="btn col-lg-4 col-lg-offset-4 <s:if test='#nowTime.getTime() < #startTime.getTime()'>btn-danger disabled</s:if><s:else>btn-primary</s:else>" href="test?examId=<s:property value='id'/>" role="button">考试</a></td>
-                                    	</tr>
-                                    </s:iterator>
-                                </tbody>
-                            </table>
+                            <form role="form" action="Judge" method="POST">
+                            <input type="radio " hidden="true" name="examId" id="optionsRadiosInline5" value='<s:property value="examId" />'>
+                                <s:iterator value="list" status='st'>
+                                    <h4><s:property value="#st.index+1"/>.<s:property value="dis"/></h4>
+                                    <div class="form-group col-lg-12">
+                                    <input type="radio " hidden="true" name="rs.id" id="optionsRadiosInline5" value='<s:property value="queid" />'>
+                                    <label class="radio-inline col-lg-2" >
+                                        <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline1" value="1">A.<s:property value="ansa" />
+                                    </label>
+                                    <s:if test="ansnum>=2">
+                                    <label class="radio-inline col-lg-2">
+                                        <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline2" value="2">B.<s:property value="ansb" />
+                                    </label>
+                                    </s:if>
+                                    <s:if test="ansnum>=3">
+                                    <label class="radio-inline col-lg-2">
+                                        <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline3" value="3">C.<s:property value="ansc" />
+                                    </label>
+                                    </s:if>
+                                    <s:if test="ansnum>=4">
+                                    <label class="radio-inline col-lg-2">
+                                        <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline4" value="4">D.<s:property value="ansd" />
+                                    </label>
+                                    </s:if>
+                                    <s:if test="ansnum>=5">
+                                    <label class="radio-inline col-lg-2">
+                                        <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline5" value="5">E.<s:property value="anse" />
+                                    </label>
+                                    </s:if>
+                                    </div>
+                                </s:iterator>
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-lg btn-primary col-lg-offset-6 col-lg-2">交卷</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

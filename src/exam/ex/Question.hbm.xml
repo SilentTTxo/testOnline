@@ -31,6 +31,9 @@
         <property name="anse" type="java.lang.String">
             <column name="ANSE" length="65535" />
         </property>
+        <property name="ans" type="java.lang.Integer">
+            <column name="ANS" not-null="true" />
+        </property>
         <set name="exques" inverse="true">
             <key>
                 <column name="QUEID" />
