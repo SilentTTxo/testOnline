@@ -16,6 +16,7 @@ public class UserInfoAction {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		if(user == null){
 			user = userDAO.findById((Integer)session.getAttribute("userid"));
+			if((Integer)session.getAttribute("power")==2) return "ADMIN";
 			return "SUCCESS";
 		}
 		try{
@@ -23,6 +24,7 @@ public class UserInfoAction {
 			user.setUsername(session.getAttribute("username").toString());
 			user.setPower((Integer)session.getAttribute("power"));
 			userDAO.merge(user);
+			if((Integer)session.getAttribute("power")==2) return "ADMIN";
 			return "SUCCESS";
 		}
 		catch(Exception e){

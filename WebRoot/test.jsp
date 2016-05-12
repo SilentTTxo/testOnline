@@ -111,11 +111,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <form role="form" action="Judge" method="POST">
-                            <input type="radio " hidden="true" name="examId" id="optionsRadiosInline5" value='<s:property value="examId" />'>
+                            <input type="text" hidden="true" name="examId" value='<s:property value="examId" />'>
                                 <s:iterator value="list" status='st'>
                                     <h4><s:property value="#st.index+1"/>.<s:property value="dis"/></h4>
                                     <div class="form-group col-lg-12">
-                                    <input type="radio " hidden="true" name="rs.id" id="optionsRadiosInline5" value='<s:property value="queid" />'>
+                                    <input type="text" hidden="true" name="rs[<s:property value='#st.index'/>].id" id="optionsRadiosInline5" value='<s:property value="queid" />'>
                                     <label class="radio-inline col-lg-2" >
                                         <input type="radio" name="rs[<s:property value='#st.index'/>].ans" id="optionsRadiosInline1" value="1">A.<s:property value="ansa" />
                                     </label>

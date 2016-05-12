@@ -16,10 +16,6 @@ public class QuestionAction {
 	private Question question;
 
 	public String execute() throws Exception {
-		if(cmd == 1){//查询
-			questions = questionDAO.findAll();
-			return "SUCCESS";
-		}
 		if(cmd == 2){//删除
 			Question temp = questionDAO.findById(delid);
 			try{
@@ -29,17 +25,15 @@ public class QuestionAction {
 				message = "请先删除关联考试";
 				return "ERROR";
 			}
-			
-			return "SUCCESS";
 		}
 		if(cmd == 3){//添加
-			if(question.getAnsc()==null) question.setAnsc("T_NULL");
-			if(question.getAnsd()==null) question.setAnsd("T_NULL");
-			if(question.getAnse()==null) question.setAnse("T_NULL");
+			if(question.getAnsc()==null||question.getAnsc().isEmpty()) question.setAnsc("T_NULL");
+			if(question.getAnsd()==null||question.getAnsd().isEmpty()) question.setAnsd("T_NULL");
+			if(question.getAnse()==null||question.getAnse().isEmpty()) question.setAnse("T_NULL");
 			questionDAO.save(question);
-			return "SUCCESS";
 		}
-		return "ERROR";
+		questions = questionDAO.findAll();
+		return "SUCCESS";
 	}
 
 	public String getMessage() {

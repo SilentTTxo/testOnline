@@ -20,11 +20,19 @@ public class ScoreAction {
 	
 	public String execute() throws Exception {
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		List<Seuview> temp = seuviewDAO.findByProperty("id.userid", (Integer)session.getAttribute("userid"));
+		List<Seuview> temp = null;
+		if((Integer)session.getAttribute("power")==2){
+			temp = seuviewDAO.findAll();
+		}
+		else {
+			temp = seuviewDAO.findByProperty("id.userid", (Integer)session.getAttribute("userid"));
+		}
+		
 		score = new ArrayList<SeuviewId>();
 		for(Seuview xx : temp){
 			score.add(xx.getId());
 		}
+		if((Integer)session.getAttribute("power")==2) return "ADMIN";
 		return "SUCCESS";
 	}
 

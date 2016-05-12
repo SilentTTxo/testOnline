@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import com.opensymphony.xwork2.ActionContext;
 
 import exam.ex.AllexamDAO;
+import exam.ex.Exam;
 import exam.ex.ExamDAO;
 import exam.ex.Nowexam;
 import exam.ex.NowexamDAO;
@@ -29,11 +30,23 @@ public class ExamAction {
 		this.examList = examList;
 	}
 
+	private int delexamid = -1;
+	public int getDelexamid() {
+		return delexamid;
+	}
+
+	public void setDelexamid(int delexamid) {
+		this.delexamid = delexamid;
+	}
+
+	private int admin = -1;
 	private List<Nowexam> examList;
 	private NowexamDAO nowexamDAO;
 	private List<NowexamId> examidList;
 	private ScoreDAO scoreDAO;
 	private UserDAO userDAO;
+	private Exam exam;
+	private ExamDAO examDAO;
 	
 	public ScoreDAO getScoreDAO() {
 		return scoreDAO;
@@ -49,6 +62,22 @@ public class ExamAction {
 		return url;
 	}
 
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+
+	public ExamDAO getExamDAO() {
+		return examDAO;
+	}
+
+	public void setExamDAO(ExamDAO examDAO) {
+		this.examDAO = examDAO;
+	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
@@ -59,6 +88,14 @@ public class ExamAction {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public int getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(int admin) {
+		this.admin = admin;
 	}
 
 	public UserDAO getUserDAO() {
@@ -82,9 +119,15 @@ public class ExamAction {
 	public String execute() throws Exception {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		if(session.getAttribute("username")==null){
-			url = "www.baidu.com";
+			url = "login.html";
 			message = "请先登录！";
 			return "ERROR";
+		}
+		if(admin == 1 && exam != null){
+			examDAO.save(exam);
+		}
+		if((Integer)session.getAttribute("power")==2 && delexamid != -1){
+			examDAO.delete(examDAO.findById(delexamid));
 		}
 		examList = nowexamDAO.findAll();
 		examidList = new ArrayList<NowexamId>();
@@ -98,6 +141,7 @@ public class ExamAction {
 			}
 			if(key) examidList.add(temp.getId());
 		}
+		if((Integer)session.getAttribute("power")==2 && admin == 1) return "ADMIN";
 		return "SUCCESS";
 	}
 

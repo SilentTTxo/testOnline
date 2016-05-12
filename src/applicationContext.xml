@@ -8,7 +8,7 @@
 
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url" value="jdbc:mysql://ecs.SilentTT.top:3306/exam?useUnicode=true&amp;characterEncoding=utf-8"> </property>
+		<property name="url" value="jdbc:mysql://ecs.SilentTT.top:3306/exam?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true"> </property>
 		<property name="username" value="root"></property>
 		<property name="password" value="a132132"></property>
 	</bean>
@@ -60,6 +60,9 @@
 		<property name="userDAO">
 			<ref bean="UserDAO" />
 		</property>
+		<property name="examDAO">
+			<ref bean="ExamDAO" />
+		</property>
 	</bean>
 	<bean id="testAction" class="exam.action.testAction"  scope="prototype">
 		<property name="allexamDAO">
@@ -67,6 +70,18 @@
 		</property>
 		<property name="nowexamDAO">
 			<ref bean="NowexamDAO" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="exqueDAO">
+			<ref bean="ExqueDAO" />
+		</property>
+		<property name="examDAO">
+			<ref bean="ExamDAO" />
+		</property>
+		<property name="questionDAO">
+			<ref bean="QuestionDAO" />
 		</property>
 	</bean>
 	<bean id="JudgeAction" class="exam.action.JudgeAction"  scope="prototype">
@@ -93,6 +108,11 @@
 	<bean id="QuestionAction" class="exam.action.QuestionAction"  scope="prototype">
 		<property name="questionDAO">
 			<ref bean="QuestionDAO" />
+		</property>
+	</bean>
+	<bean id="UserAction" class="exam.action.UserAction"  scope="prototype">
+		<property name="userDAO">
+			<ref bean="UserDAO" />
 		</property>
 	</bean>
 	<bean

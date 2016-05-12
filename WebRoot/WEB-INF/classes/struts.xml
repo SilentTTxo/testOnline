@@ -16,10 +16,12 @@
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="Exam" class="ExamAction">
+			<result name="ADMIN">/admin-test.jsp</result>
 			<result name="SUCCESS">/index.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="test" class="testAction">
+			<result name="ADMIN">/admin-test-question.jsp</result>
 			<result name="SUCCESS">/test.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
@@ -28,15 +30,21 @@
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="Score" class="ScoreAction">
+			<result name="ADMIN">/admin-score.jsp</result>
 			<result name="SUCCESS">/score.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="UserInfo" class="UserInfoAction">
+			<result name="ADMIN">/admin-userinfo.jsp</result>
 			<result name="SUCCESS">/userinfo.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 		<action name="Question" class="QuestionAction">
 			<result name="SUCCESS">/admin.jsp</result>
+			<result name="ERROR">/Error.jsp</result>
+		</action>
+		<action name="User" class="UserAction">
+			<result name="ADMIN">/admin-user.jsp</result>
 			<result name="ERROR">/Error.jsp</result>
 		</action>
 	</package>
